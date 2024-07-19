@@ -1,0 +1,18 @@
+{
+  "name": "proyecto_apps_script_dev",
+  "version": "1.0.0",
+  "description": "> ># proyecto_apps_script_dev",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/google-apps-script": "^1.0.83"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.1.3"
+  }
+}
