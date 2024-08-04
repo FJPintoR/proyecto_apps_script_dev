@@ -3,11 +3,18 @@
 function Routes(){
     return (
     <Router>
-        <h1 className="text-blue-500 font-bold text-5xl" >Desde el Routes</h1>
+      
+        <Header/>
+        <Redirect to="/"/>
         <Switch>
+            <Route exact path="/" component={Inicio} />
+
+            <Route exact path="/formularioRegistro" component={FormularioRegistro} />
+
+            <Route exact path="/usuarios" component={Usuarios} />
 
         </Switch>
     </Router>);
 }
 
-//</script>
+//</script> 

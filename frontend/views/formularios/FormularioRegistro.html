@@ -1,0 +1,58 @@
+//<script type="text/jsx">
+
+function FormularioRegistro(){
+
+    const [form] =Form.useForm();
+    
+
+    const guardarFormulario = (datosFormulario)=>{
+        notificacionGuardando('Guardando Usuario');
+        const id = v4();
+        google.script.run.withSuccessHandler(({titulo, descripcion})=>{
+        notificacionTareaTerminada(titulo,descripcion);
+        form.resetFields();
+        })
+        .guardarUsuario(JSON.stringify({id, ...datosFormulario}));
+    }
+
+
+    return(
+        <div className='px-20'>
+        <h2 className="text-center font-bold text-xl my-6">FORMULARIO DE REGISTRO</h2>
+
+        <Form className='px-3' 
+            form={form}
+            onFinish={guardarFormulario} 
+            layout="vertical">
+
+            <Item name="nombreCompleto" 
+                  label="Nombre Completo"
+                  rules={[{required: true, message:"el Campo del nombre es requerido"}]}>
+                <Input/>
+            </Item>
+
+            <Item name="correo" 
+                  label="Correo Eletronico"
+                  rules={[{type:"email", message: "El formato no coincide con el de un correo valido"},
+                          {required: true, message:"El campo de correo es requerido para el registro"}]}>
+                <Input/>    
+            </Item>
+
+            <Item name="contrasenia" 
+                  label="Contraseña"
+                  rules={[{required: true, message:"El campo de contraseña es requerido para el registro"}]}>
+                <Password/>
+            </Item>
+            <Item className="text-center">
+                <Button  htmlType='submit'>Guardar</Button>
+            </Item>
+
+        </Form>  
+        
+        </div>
+    )
+}
+
+
+
+//</script>

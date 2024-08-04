@@ -16,16 +16,30 @@
 <components style="display: none;">
 
 <!-- Importaciones -->
+ 
 
 <!-- Constantes -->
+
 <?!= include('frontend/config/constantesCdn') ?>
+
 
 <!-- rutas -->
 
 <?!= include('frontend/routes/Routes') ?>
 
+<!-- Helpers -->
+
+<?!= include('frontend/helpers/modalesNotificaciones') ?> 
 
 <!-- Vistas -->
+
+<?!= include('frontend/views/Inicio') ?>
+<?!= include('frontend/views/usuarios/Usuarios') ?>
+<?!= include('frontend/views/formularios/FormularioRegistro') ?>
+<?!= include('frontend/components/Header') ?>
+
+
+<!-- Componente raiz -->
 <?!= include('frontend/App') ?>
 
 </html>
