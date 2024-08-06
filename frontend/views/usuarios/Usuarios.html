@@ -5,7 +5,9 @@
 function Usuarios() {
 
     const [dataSource, setDataSource]=useState([]);
-    useEffect(listarUsuarios,[]);
+    const [renderTabla,setRenderTabla]=useState(0);
+    useEffect(listarUsuarios,[renderTabla]);
+    const history=useHistory();
 
     function listarUsuarios(){
         google.script.run
@@ -16,14 +18,42 @@ function Usuarios() {
                 arreglo.push({
                     key: usuario.id,
                     ...usuario,
-                    acciones:<Button>Editar</Button>
-                })
+                    acciones:
+                    <Fragment>
+
+                    <Button 
+                        onClick={()=>{
+                        history.push("/formularioRegistro/"+usuario.id);
+                        }}
+                        >Editar
+                    </Button>
+
+                    <Button
+                        className='bg-red-500 text-white rounded-lg px-3 py-2 hover:shadow-xl'
+                        type="primary"
+                        onClick={()=>{
+                            eliminarUsuario(usuario.id)
+                        }}
+                        >Eliminar
+                    </Button>
+                    </Fragment>,
+                 })
             })
             setDataSource(arreglo);
             
         }).listarUsuarios();
-        
+    
     }
+
+    function eliminarUsuario(id){
+        notificacionGuardando('Eliminando Usuario');
+        google.script.run.withSuccessHandler(({titulo,descripcion})=>{
+            notificacionTareaTerminada(titulo,descripcion);
+            setRenderTabla(renderTabla+1);
+        })
+        .eliminarUsuario(id)
+    }
+
 
 
 
